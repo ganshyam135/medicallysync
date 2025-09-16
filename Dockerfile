@@ -24,7 +24,6 @@ EXPOSE 5000
 
 # Set production environment
 ENV NODE_ENV=production
-ENV DATABASE_URL=sqlite:///app/data/medicallysync.db
 
 # Run database setup and start app
-CMD ["sh", "-c", "npm run db:push && npm start"]
+CMD ["sh", "-c", "npm run db:push || echo 'Database migration skipped' && npm start"]
