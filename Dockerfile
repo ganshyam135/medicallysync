@@ -7,8 +7,8 @@ WORKDIR /app
 # Copy package files
 COPY package*.json ./
 
-# Install dependencies
-RUN npm ci --only=production
+# Install all dependencies (needed for build)
+RUN npm ci
 
 # Copy source code
 COPY . .
@@ -25,5 +25,5 @@ EXPOSE 5000
 # Set production environment
 ENV NODE_ENV=production
 
-# Run database setup and start app
-CMD ["sh", "-c", "npm run db:push || echo 'Database migration skipped' && npm start"]
+# Start the app
+CMD ["npm", "start"]
