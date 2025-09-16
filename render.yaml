@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: medicallysync
+    env: node
+    plan: free
+    buildCommand: npm ci && npm run build && npm run db:push
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        value: sqlite:///opt/render/project/src/medicallysync.db
+    disk:
+      name: sqlite-disk
+      mountPath: /opt/render/project/src
+      sizeGB: 1
